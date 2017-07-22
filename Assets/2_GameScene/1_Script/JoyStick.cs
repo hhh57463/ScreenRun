@@ -11,6 +11,7 @@ public class JoyStick : MonoBehaviour {
     public Vector3 DirVec;
     public Transform StickTrans = null;
     public bool bUse = false;
+    public float PlayerAngle;
 
     // Use this for initialization
     void Start()
@@ -21,15 +22,6 @@ public class JoyStick : MonoBehaviour {
         // 반지름으로 이동가능한 범위 설정
         fStickRadius = StickImg.rectTransform.sizeDelta.x / 2;
     }
-
-    //void Update()
-    //{
-    //    if (Input.GetMouseButtonDown(0))
-    //    {
-    //        StickTrans.transform.localPosition = new Vector3(0f, 0f, 0f);
-    //        transform.position = Input.mousePosition;
-    //    }
-    //}
 
     public void Drag()
     {
@@ -51,6 +43,8 @@ public class JoyStick : MonoBehaviour {
             // 조이스틱이 반경 안에서 움직일대 마우스 좌표로 움직이게
             StickImg.rectTransform.position = touch;
         }
+        Vector3 vtPos3 = StickTrans.position - transform.position;
+        PlayerAngle = Mathf.Atan2(vtPos3.y, vtPos3.x) * Mathf.Rad2Deg;
     }
 
     public void EndDrag()
