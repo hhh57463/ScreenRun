@@ -5,16 +5,19 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
+    public GameObject ResultSceneGams;
+    public GameObject[] GameUIs;
     public Transform HeroParentTr;
     public JoyStick JoyStickSc;
-    float fSpeed = 5f;
+    float fSpeed = 4f;
     public MapScroll MapSc;
     public bool bHeroDie = false;
+    SpriteRenderer HeroSr;
 
     // Use this for initialization
     void Start()
     {
-
+        HeroSr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -22,6 +25,11 @@ public class Player : MonoBehaviour
     {
         if (!bHeroDie)
             Move();
+
+        if (bHeroDie)
+        {
+            StartCoroutine(HeroDie());
+        }
     }
 
     public void Move()
@@ -34,50 +42,59 @@ public class Player : MonoBehaviour
         switch (MapSc.nMapNum)
         {
             case 0:
-                HeroParentTr.Translate(Vector2.up * 2f * Time.deltaTime);
+                HeroParentTr.Translate(Vector2.up * 0.5f * Time.deltaTime);
                 break;
 
             case 1:
-                HeroParentTr.Translate(Vector2.right * 2f * Time.deltaTime);
+                HeroParentTr.Translate(Vector2.right * 0.5f * Time.deltaTime);
                 break;
 
             case 2:
-                HeroParentTr.Translate(Vector2.left * 2f * Time.deltaTime);
+                HeroParentTr.Translate(Vector2.left * 0.5f * Time.deltaTime);
                 break;
 
             case 3:
-                HeroParentTr.Translate(Vector2.down * 2f * Time.deltaTime);
+                HeroParentTr.Translate(Vector2.down * 0.5f * Time.deltaTime);
                 break;
 
             case 4:
-                HeroParentTr.Translate(Vector2.right * Time.deltaTime);
-                HeroParentTr.Translate(Vector2.up * Time.deltaTime);
+                HeroParentTr.Translate(Vector2.right * 0.5f * Time.deltaTime);
+                HeroParentTr.Translate(Vector2.up * 0.5f * Time.deltaTime);
                 break;
 
             case 5:
-                HeroParentTr.Translate(Vector2.left * Time.deltaTime);
-                HeroParentTr.Translate(Vector2.down * Time.deltaTime);
+                HeroParentTr.Translate(Vector2.left * 0.5f * Time.deltaTime);
+                HeroParentTr.Translate(Vector2.down * 0.5f * Time.deltaTime);
                 break;
 
             case 6:
-                HeroParentTr.Translate(Vector2.right * Time.deltaTime);
-                HeroParentTr.Translate(Vector2.down * Time.deltaTime);
+                HeroParentTr.Translate(Vector2.right * 0.5f * Time.deltaTime);
+                HeroParentTr.Translate(Vector2.down * 0.5f * Time.deltaTime);
                 break;
 
             case 7:
-                HeroParentTr.Translate(Vector2.left * Time.deltaTime);
-                HeroParentTr.Translate(Vector2.up * Time.deltaTime);
+                HeroParentTr.Translate(Vector2.left * 0.5f * Time.deltaTime);
+                HeroParentTr.Translate(Vector2.up * 0.5f * Time.deltaTime);
                 break;
 
         }
 
     }
 
+    IEnumerator HeroDie()
+    {
+        yield return new WaitForSeconds(1f);
+        GameUIs[0].SetActive(false);
+        GameUIs[1].SetActive(false);
+        ResultSceneGams.SetActive(true);
+    }
+
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.CompareTag("Wall"))
+        if (col.CompareTag("Wall") || col.CompareTag("Fire"))
         {
             bHeroDie = true;
+            HeroSr.enabled = false;
             Debug.Log("게임오버");
         }
     }

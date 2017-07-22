@@ -47,6 +47,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\0_Common\Mng.cs" />
+     <Compile Include="Assets\1_MenuScene\1_Script\BtnMng.cs" />
+     <Compile Include="Assets\2_GameScene\1_Script\Fire.cs" />
+     <Compile Include="Assets\2_GameScene\1_Script\GameBtnMng.cs" />
      <Compile Include="Assets\2_GameScene\1_Script\JoyStick.cs" />
      <Compile Include="Assets\2_GameScene\1_Script\MapScroll.cs" />
      <Compile Include="Assets\2_GameScene\1_Script\Player.cs" />

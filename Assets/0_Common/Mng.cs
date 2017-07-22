@@ -21,6 +21,7 @@ public class Mng : MonoBehaviour {
     void Awake()
     {
         _Instance = this;
+        Screen.SetResolution(1280, 720, false);
         DontDestroyOnLoad(transform.gameObject);
     }
 
