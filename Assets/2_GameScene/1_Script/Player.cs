@@ -13,11 +13,13 @@ public class Player : MonoBehaviour
     public MapScroll MapSc;
     public bool bHeroDie = false;
     SpriteRenderer HeroSr;
+    public int nTimeCount = 0;
 
     // Use this for initialization
     void Start()
     {
         HeroSr = GetComponent<SpriteRenderer>();
+        StartCoroutine(TimeCount());
     }
 
     // Update is called once per frame
@@ -86,7 +88,18 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(1f);
         GameUIs[0].SetActive(false);
         GameUIs[1].SetActive(false);
+        GameUIs[2].SetActive(false);
         ResultSceneGams.SetActive(true);
+    }
+
+    public IEnumerator TimeCount()
+    {
+        yield return new WaitForSeconds(1f);
+        if (!bHeroDie)
+        {
+            nTimeCount++;
+            StartCoroutine(TimeCount());
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)

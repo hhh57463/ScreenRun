@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour {
 
-
+    public Player HeroSc;
     public MapScroll MapSc;
     float fSpeed = 2f;
 
@@ -23,7 +23,7 @@ public class Fire : MonoBehaviour {
     public void Move()
     {
         transform.Translate(Vector2.down * fSpeed * Time.deltaTime);
-        if (transform.localPosition.y <= -9f)
+        if (transform.localPosition.y <= -9f && !HeroSc.bHeroDie)
         {
             transform.localPosition = new Vector2(0f, 8f);
         }
