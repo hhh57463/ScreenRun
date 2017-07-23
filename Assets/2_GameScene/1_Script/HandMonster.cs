@@ -32,7 +32,7 @@ public class HandMonster : MonoBehaviour {
         HandSr.sprite = HandSprite;
         Box.enabled = true;
         yield return new WaitForSeconds(1f);
-        StartCoroutine(HandParentSc.HandMonsterSKill());
+        HandParentSc.bSkillUse = true;
         Destroy(gameObject);
     }
 

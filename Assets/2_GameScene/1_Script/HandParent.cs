@@ -6,22 +6,25 @@ public class HandParent : MonoBehaviour {
 
     public GameObject HeroGams;
     public GameObject HandPre;
+    public bool bSkillUse = false;
     Vector3 PosVec3;
 
 	// Use this for initialization
 	void Start () {
-        StartCoroutine(HandMonsterSKill());
-		
+        bSkillUse = true;	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
 
-
+        if (bSkillUse)
+        {
+            StartCoroutine(HandMonsterSKill());
+            bSkillUse = false;
+        }
 	}
 
-    public IEnumerator HandMonsterSKill()
+    IEnumerator HandMonsterSKill()
     {
         Debug.Log("ASDFASDFASDFADSFADSFA");
         yield return new WaitForSeconds(1f);
