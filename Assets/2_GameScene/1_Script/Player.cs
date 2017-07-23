@@ -91,7 +91,7 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.CompareTag("Wall") || col.CompareTag("Fire"))
+        if (col.CompareTag("Wall") || col.CompareTag("Fire") || col.CompareTag("Hand"))
         {
             bHeroDie = true;
             HeroSr.enabled = false;
