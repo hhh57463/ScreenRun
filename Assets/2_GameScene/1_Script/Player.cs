@@ -86,9 +86,10 @@ public class Player : MonoBehaviour
     IEnumerator HeroDie()
     {
         yield return new WaitForSeconds(1f);
-        GameUIs[0].SetActive(false);
-        GameUIs[1].SetActive(false);
-        GameUIs[2].SetActive(false);
+        for (int i = 0; i < GameUIs.Length; i++)
+        {
+            GameUIs[i].SetActive(false);
+        }
         ResultSceneGams.SetActive(true);
     }
 
