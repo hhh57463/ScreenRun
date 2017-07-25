@@ -5,7 +5,7 @@ using UnityEngine;
 public class Mng : MonoBehaviour {
 
     private static Mng _Instance = null;
-
+    public int nJoyStickPos = 0;
     public static Mng I
     {
         get

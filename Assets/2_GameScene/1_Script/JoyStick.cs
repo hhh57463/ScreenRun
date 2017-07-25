@@ -16,6 +16,16 @@ public class JoyStick : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+
+        if (Mng.I.nJoyStickPos == 1)
+        {
+            transform.localPosition = new Vector3(-470f, -200f, 0f);
+        }
+        else if (Mng.I.nJoyStickPos == 2)
+        {
+            transform.localPosition = new Vector3(470f, -200f, 0f);
+        }
+
         // 조이스틱 반경 계산
         OldVec = StickImg.transform.position;
 
