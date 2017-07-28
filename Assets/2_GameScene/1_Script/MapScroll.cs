@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class MapScroll : MonoBehaviour
 {
-
-    public float ScrollSpeed = 0.5f;
     Material MapMat;
     public int nMapNum;
     public Image DirectionImg;                  //UI중 방향이미지
@@ -29,43 +27,35 @@ public class MapScroll : MonoBehaviour
         switch (nMapNum)
         {
             case 0:                                                                                     //Up
-                ScrollSpeed = 0.6f;
-                newOffset.Set(0, newOffset.y + (ScrollSpeed * Time.deltaTime));
+                newOffset.Set(0, newOffset.y + (SGameMng.I.fMapScrollSpeed * Time.deltaTime));
                 DirectionImg.sprite = DirectionSpt[0];
                 break;
             case 1:                                                                                     //Right
-                ScrollSpeed = 0.5f;
-                newOffset.Set(newOffset.x + (ScrollSpeed * Time.deltaTime), 0);
+                newOffset.Set(newOffset.x + (SGameMng.I.fMapScrollSpeed * Time.deltaTime), 0);
                 DirectionImg.sprite = DirectionSpt[1];
                 break;
             case 2:                                                                                     //Left
-                ScrollSpeed = 0.5f;
-                newOffset.Set(newOffset.x - (ScrollSpeed * Time.deltaTime), 0);
+                newOffset.Set(newOffset.x - (SGameMng.I.fMapScrollSpeed * Time.deltaTime), 0);
                 DirectionImg.sprite = DirectionSpt[2];
                 break;
             case 3:                                                                                     //Down
-                ScrollSpeed = 0.6f;
-                newOffset.Set(0, newOffset.y - (ScrollSpeed * Time.deltaTime));
+                newOffset.Set(0, newOffset.y - (SGameMng.I.fMapScrollSpeed * Time.deltaTime));
                 DirectionImg.sprite = DirectionSpt[3];
                 break;
             case 4:                                                                                     //RightUp
-                ScrollSpeed = 0.4f;
-                newOffset.Set(newOffset.x + (ScrollSpeed * Time.deltaTime), newOffset.y + (ScrollSpeed * Time.deltaTime));
+                newOffset.Set(newOffset.x + (SGameMng.I.fMapScrollSpeed * Time.deltaTime), newOffset.y + (SGameMng.I.fMapScrollSpeed * Time.deltaTime));
                 DirectionImg.sprite = DirectionSpt[4];
                 break;
             case 5:                                                                                     //LeftDown
-                ScrollSpeed = 0.4f;
-                newOffset.Set(newOffset.x - (ScrollSpeed * Time.deltaTime), newOffset.y - (ScrollSpeed * Time.deltaTime));
+                newOffset.Set(newOffset.x - (SGameMng.I.fMapScrollSpeed * Time.deltaTime), newOffset.y - (SGameMng.I.fMapScrollSpeed * Time.deltaTime));
                 DirectionImg.sprite = DirectionSpt[5];
                 break;
             case 6:                                                                                     //RightDown
-                ScrollSpeed = 0.4f;
-                newOffset.Set(newOffset.x + (ScrollSpeed * Time.deltaTime), newOffset.y - (ScrollSpeed * Time.deltaTime));
+                newOffset.Set(newOffset.x + (SGameMng.I.fMapScrollSpeed * Time.deltaTime), newOffset.y - (SGameMng.I.fMapScrollSpeed * Time.deltaTime));
                 DirectionImg.sprite = DirectionSpt[6];
                 break;
             case 7:                                                                                     //LeftUp
-                ScrollSpeed = 0.4f;
-                newOffset.Set(newOffset.x - (ScrollSpeed * Time.deltaTime), newOffset.y + (ScrollSpeed * Time.deltaTime));
+                newOffset.Set(newOffset.x - (SGameMng.I.fMapScrollSpeed * Time.deltaTime), newOffset.y + (SGameMng.I.fMapScrollSpeed * Time.deltaTime));
                 DirectionImg.sprite = DirectionSpt[7];
                 break;
         }

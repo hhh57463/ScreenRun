@@ -2,23 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fire : MonoBehaviour {
+public class Fire : MonoBehaviour
+{
 
     public Player HeroSc;
     public MapScroll MapSc;
     float fSpeed = 2f;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Use this for initialization
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
 
         Move();
 
-	}
+    }
 
     public void Move()
     {
@@ -31,39 +34,39 @@ public class Fire : MonoBehaviour {
         switch (MapSc.nMapNum)
         {
             case 0:
-                transform.Translate(Vector2.up * 0.5f * Time.deltaTime);
+                transform.Translate(Vector2.up * SGameMng.I.fFireSpeed * Time.deltaTime);
                 break;
 
             case 1:
-                transform.Translate(Vector2.right * 0.5f * Time.deltaTime);
+                transform.Translate(Vector2.right * SGameMng.I.fFireSpeed * Time.deltaTime);
                 break;
 
             case 2:
-                transform.Translate(Vector2.left * 0.5f * Time.deltaTime);
+                transform.Translate(Vector2.left * SGameMng.I.fFireSpeed * Time.deltaTime);
                 break;
 
             case 3:
-                transform.Translate(Vector2.down * 0.5f * Time.deltaTime);
+                transform.Translate(Vector2.down * SGameMng.I.fFireSpeed * Time.deltaTime);
                 break;
 
             case 4:
-                transform.Translate(Vector2.right * 0.5f * Time.deltaTime);
-                transform.Translate(Vector2.up * 0.5f * Time.deltaTime);
+                transform.Translate(Vector2.right * SGameMng.I.fFireSpeed * Time.deltaTime);
+                transform.Translate(Vector2.up * SGameMng.I.fFireSpeed * Time.deltaTime);
                 break;
 
             case 5:
-                transform.Translate(Vector2.left * 0.5f * Time.deltaTime);
-                transform.Translate(Vector2.down * 0.5f * Time.deltaTime);
+                transform.Translate(Vector2.left * SGameMng.I.fFireSpeed * Time.deltaTime);
+                transform.Translate(Vector2.down * SGameMng.I.fFireSpeed * Time.deltaTime);
                 break;
 
             case 6:
-                transform.Translate(Vector2.right * 0.5f * Time.deltaTime);
-                transform.Translate(Vector2.down * 0.5f * Time.deltaTime);
+                transform.Translate(Vector2.right * SGameMng.I.fFireSpeed * Time.deltaTime);
+                transform.Translate(Vector2.down * SGameMng.I.fFireSpeed * Time.deltaTime);
                 break;
 
             case 7:
-                transform.Translate(Vector2.left * 0.5f * Time.deltaTime);
-                transform.Translate(Vector2.up * 0.5f * Time.deltaTime);
+                transform.Translate(Vector2.left * SGameMng.I.fFireSpeed * Time.deltaTime);
+                transform.Translate(Vector2.up * SGameMng.I.fFireSpeed * Time.deltaTime);
                 break;
 
         }

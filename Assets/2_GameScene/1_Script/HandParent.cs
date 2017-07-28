@@ -27,7 +27,7 @@ public class HandParent : MonoBehaviour {
 
     IEnumerator HandMonsterSKill()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(SGameMng.I.fHandSpeed);
         PosVec3 = HeroGams.transform.localPosition;
         Instantiate(HandPre, PosVec3, Quaternion.identity, transform);
     }

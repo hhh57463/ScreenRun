@@ -9,9 +9,9 @@ public class Player : MonoBehaviour
     public GameObject[] GameUIs;
     public Transform HeroParentTr;
     public JoyStick JoyStickSc;
-    float fSpeed = 4f;
     public MapScroll MapSc;
     public bool bHeroDie = false;
+    public bool bDifficulty = false;
     SpriteRenderer HeroSr;
     public int nTimeCount = 0;
 
@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     {
         HeroSr = GetComponent<SpriteRenderer>();
         StartCoroutine(TimeCount());
+        StartCoroutine(Difficulty());
     }
 
     // Update is called once per frame
@@ -32,55 +33,74 @@ public class Player : MonoBehaviour
         {
             StartCoroutine(HeroDie());
         }
+        if (bDifficulty)
+        {
+            SGameMng.I.fHeroSpeed += 0.5f;
+            SGameMng.I.fMapScrollSpeed += 0.1f;
+            SGameMng.I.fHeroCompulsionMoveSpeed += 0.1f;
+            SGameMng.I.fFireSpeed += 0.1f;
+            if (SGameMng.I.fHandSpeed < 0.5)
+            {
+                SGameMng.I.fHandSpeed -= 0.5f;
+            }
+            bDifficulty = false;
+        }
     }
 
     public void Move()
     {
         if (JoyStickSc.bUse)
-            HeroParentTr.localPosition += new Vector3(JoyStickSc.DirVec.x, JoyStickSc.DirVec.y, JoyStickSc.DirVec.z) * fSpeed * Time.deltaTime;
+            HeroParentTr.localPosition += new Vector3(JoyStickSc.DirVec.x, JoyStickSc.DirVec.y, JoyStickSc.DirVec.z) * SGameMng.I.fHeroSpeed * Time.deltaTime;
 
         transform.localRotation = Quaternion.Euler(new Vector3(0f, 0f, JoyStickSc.PlayerAngle - 90));
 
         switch (MapSc.nMapNum)
         {
             case 0:
-                HeroParentTr.Translate(Vector2.up * 0.5f * Time.deltaTime);
+                HeroParentTr.Translate(Vector2.up * SGameMng.I.fHeroCompulsionMoveSpeed * Time.deltaTime);
                 break;
 
             case 1:
-                HeroParentTr.Translate(Vector2.right * 0.5f * Time.deltaTime);
+                HeroParentTr.Translate(Vector2.right * SGameMng.I.fHeroCompulsionMoveSpeed * Time.deltaTime);
                 break;
 
             case 2:
-                HeroParentTr.Translate(Vector2.left * 0.5f * Time.deltaTime);
+                HeroParentTr.Translate(Vector2.left * SGameMng.I.fHeroCompulsionMoveSpeed * Time.deltaTime);
                 break;
 
             case 3:
-                HeroParentTr.Translate(Vector2.down * 0.5f * Time.deltaTime);
+                HeroParentTr.Translate(Vector2.down * SGameMng.I.fHeroCompulsionMoveSpeed * Time.deltaTime);
                 break;
 
             case 4:
-                HeroParentTr.Translate(Vector2.right * 0.5f * Time.deltaTime);
-                HeroParentTr.Translate(Vector2.up * 0.5f * Time.deltaTime);
+                HeroParentTr.Translate(Vector2.right * SGameMng.I.fHeroCompulsionMoveSpeed * Time.deltaTime);
+                HeroParentTr.Translate(Vector2.up * SGameMng.I.fHeroCompulsionMoveSpeed * Time.deltaTime);
                 break;
 
             case 5:
-                HeroParentTr.Translate(Vector2.left * 0.5f * Time.deltaTime);
-                HeroParentTr.Translate(Vector2.down * 0.5f * Time.deltaTime);
+                HeroParentTr.Translate(Vector2.left * SGameMng.I.fHeroCompulsionMoveSpeed * Time.deltaTime);
+                HeroParentTr.Translate(Vector2.down * SGameMng.I.fHeroCompulsionMoveSpeed * Time.deltaTime);
                 break;
 
             case 6:
-                HeroParentTr.Translate(Vector2.right * 0.5f * Time.deltaTime);
-                HeroParentTr.Translate(Vector2.down * 0.5f * Time.deltaTime);
+                HeroParentTr.Translate(Vector2.right * SGameMng.I.fHeroCompulsionMoveSpeed * Time.deltaTime);
+                HeroParentTr.Translate(Vector2.down * SGameMng.I.fHeroCompulsionMoveSpeed * Time.deltaTime);
                 break;
 
             case 7:
-                HeroParentTr.Translate(Vector2.left * 0.5f * Time.deltaTime);
-                HeroParentTr.Translate(Vector2.up * 0.5f * Time.deltaTime);
+                HeroParentTr.Translate(Vector2.left * SGameMng.I.fHeroCompulsionMoveSpeed * Time.deltaTime);
+                HeroParentTr.Translate(Vector2.up * SGameMng.I.fHeroCompulsionMoveSpeed * Time.deltaTime);
                 break;
 
         }
 
+    }
+
+    IEnumerator Difficulty()
+    {
+        yield return new WaitForSeconds(10f);
+        bDifficulty = true;
+        StartCoroutine(Difficulty());
     }
 
     IEnumerator HeroDie()
