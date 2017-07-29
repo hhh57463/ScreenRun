@@ -9,6 +9,9 @@ public class GameLabelMng : MonoBehaviour {
     public Text TimeCountText;
     public Text ResultTimeCount;
     public Text ResultBestTime;
+    public Text LevelText;
+    public Text ResultLevelText;
+    public Text ResultBestLevelText;
 
 	// Use this for initialization
 	void Start () {
@@ -19,5 +22,7 @@ public class GameLabelMng : MonoBehaviour {
 	void Update () {
         TimeCountText.text = HeroSc.nTimeCount.ToString() + " 초";
         ResultTimeCount.text = HeroSc.nTimeCount.ToString() + " 초";
+        LevelText.text = HeroSc.nLevel.ToString();
+        ResultLevelText.text = HeroSc.nLevel.ToString();
 	}
 }
