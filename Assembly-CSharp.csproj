@@ -53,6 +53,7 @@
      <Compile Include="Assets\2_GameScene\1_Script\GameLabelMng.cs" />
      <Compile Include="Assets\2_GameScene\1_Script\HandMonster.cs" />
      <Compile Include="Assets\2_GameScene\1_Script\HandParent.cs" />
+     <Compile Include="Assets\2_GameScene\1_Script\Item.cs" />
      <Compile Include="Assets\2_GameScene\1_Script\JoyStick.cs" />
      <Compile Include="Assets\2_GameScene\1_Script\LevelUpAnimation.cs" />
      <Compile Include="Assets\2_GameScene\1_Script\MapScroll.cs" />
