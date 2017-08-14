@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HandMonster : MonoBehaviour {
 
-    public GameObject HandParentGams;
+    //public GameObject HandParentGams;
     public HandParent HandParentSc;
     public SpriteRenderer HandSr;
     public Sprite HandSprite;
@@ -13,8 +13,8 @@ public class HandMonster : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        HandParentGams = GameObject.Find("Hand");
-        HandParentSc = HandParentGams.GetComponent<HandParent>();
+        //HandParentGams = GameObject.Find("Hand");
+        HandParentSc = GameObject.Find("Hand").GetComponent<HandParent>();
         HandSr = GetComponent<SpriteRenderer>();
         Box = GetComponent<BoxCollider2D>();
         StartCoroutine(Skill());

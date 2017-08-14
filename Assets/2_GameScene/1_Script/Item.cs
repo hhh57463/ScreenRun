@@ -86,6 +86,7 @@ public class Item : MonoBehaviour
         if (col.CompareTag("Hero"))
         {
             //StartCoroutine(SGameMng.I.ItemZen());
+            Debug.Log("아이템 획득!");
             SGameMng.I.bItemZenStart = true;
             Destroy(gameObject);
         }
