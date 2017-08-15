@@ -8,6 +8,8 @@ public class SGameMng : MonoBehaviour
     private static SGameMng _Instance = null;
 
     public GameObject ItemPre;
+    public GameObject ItemAni;
+
     public Transform ItemZenPr;
 
     public Vector3 ItemPosVec;
@@ -57,6 +59,7 @@ public class SGameMng : MonoBehaviour
     {
         ItemPosRandomSetting();
         yield return new WaitForSeconds(fIteZenTime);
+        ItemAni.SetActive(true);
         Instantiate(ItemPre, ItemPosVec, Quaternion.identity, ItemZenPr);
     }
 

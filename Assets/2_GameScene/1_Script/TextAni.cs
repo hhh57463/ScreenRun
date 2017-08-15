@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelUpAnimation : MonoBehaviour {
+public class TextAni : MonoBehaviour {
 
     public void LevelUP()
     {
         gameObject.SetActive(false);
     }
 
+    public void ItemGive()
+    {
+        gameObject.SetActive(false);
+    }
 }

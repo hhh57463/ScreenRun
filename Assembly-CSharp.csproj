@@ -55,10 +55,10 @@
      <Compile Include="Assets\2_GameScene\1_Script\HandParent.cs" />
      <Compile Include="Assets\2_GameScene\1_Script\Item.cs" />
      <Compile Include="Assets\2_GameScene\1_Script\JoyStick.cs" />
-     <Compile Include="Assets\2_GameScene\1_Script\LevelUpAnimation.cs" />
      <Compile Include="Assets\2_GameScene\1_Script\MapScroll.cs" />
      <Compile Include="Assets\2_GameScene\1_Script\Player.cs" />
      <Compile Include="Assets\2_GameScene\1_Script\SGameMng.cs" />
+     <Compile Include="Assets\2_GameScene\1_Script\TextAni.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
