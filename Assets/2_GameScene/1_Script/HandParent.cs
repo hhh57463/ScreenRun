@@ -6,7 +6,7 @@ public class HandParent : MonoBehaviour {
 
     public GameObject HeroGams;
     public GameObject HandPre;
-    public Player HeroSc;
+    //public Player HeroSc;
     public bool bSkillUse = false;
     Vector3 PosVec3;
 
@@ -18,7 +18,7 @@ public class HandParent : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (bSkillUse && !HeroSc.bHeroDie) 
+        if (bSkillUse && !SGameMng.I.bHeroDie) 
         {
             StartCoroutine(HandMonsterSKill());
             bSkillUse = false;

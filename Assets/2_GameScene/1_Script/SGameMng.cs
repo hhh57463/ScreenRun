@@ -9,11 +9,14 @@ public class SGameMng : MonoBehaviour
 
     public GameObject ItemPre;
     public GameObject ItemAni;
+    public GameObject GameObjects;
+    public GameObject AniGams;
 
     public Transform ItemZenPr;
 
     public Vector3 ItemPosVec;
 
+    public bool bHeroDie = false;
     public bool bItemZenStart = false;
 
     public float fFireDownSpeed = 2f;
@@ -53,14 +56,17 @@ public class SGameMng : MonoBehaviour
             StartCoroutine(ItemZen());
             bItemZenStart = false;
         }
+        Debug.Log(bHeroDie);
     }
 
     public IEnumerator ItemZen()
     {
+
         ItemPosRandomSetting();
         yield return new WaitForSeconds(fIteZenTime);
         ItemAni.SetActive(true);
         Instantiate(ItemPre, ItemPosVec, Quaternion.identity, ItemZenPr);
+
     }
 
     void ItemPosRandomSetting()

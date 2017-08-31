@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
 
     public MapScroll MapSc;
 
-    public bool bHeroDie = false;
+    //public bool bHeroDie = false;
     public bool bDifficulty = false;
 
     SpriteRenderer HeroSr;
@@ -34,10 +34,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!bHeroDie)
+        if (!SGameMng.I.bHeroDie)
             Move();
 
-        if (bHeroDie)
+        if (SGameMng.I.bHeroDie)
         {
             StartCoroutine(HeroDie());
         }
@@ -122,13 +122,15 @@ public class Player : MonoBehaviour
         {
             GameUIs[i].SetActive(false);
         }
+        SGameMng.I.AniGams.SetActive(false);
+        SGameMng.I.GameObjects.SetActive(false);
         ResultSceneGams.SetActive(true);
     }
 
     public IEnumerator TimeCount()
     {
         yield return new WaitForSeconds(1f);
-        if (!bHeroDie)
+        if (!SGameMng.I.bHeroDie)
         {
             nTimeCount++;
             StartCoroutine(TimeCount());
@@ -139,7 +141,7 @@ public class Player : MonoBehaviour
     {
         if (col.CompareTag("Wall") || col.CompareTag("Fire") || col.CompareTag("Hand"))
         {
-            bHeroDie = true;
+            SGameMng.I.bHeroDie = true;
             HeroSr.enabled = false;
             Debug.Log("게임오버");
         }

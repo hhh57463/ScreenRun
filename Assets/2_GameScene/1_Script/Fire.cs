@@ -5,7 +5,7 @@ using UnityEngine;
 public class Fire : MonoBehaviour
 {
 
-    public Player HeroSc;
+    //public Player HeroSc;
     public MapScroll MapSc;
 
     // Use this for initialization
@@ -25,7 +25,7 @@ public class Fire : MonoBehaviour
     public void Move()
     {
         transform.Translate(Vector2.down * SGameMng.I.fFireDownSpeed * Time.deltaTime);
-        if (transform.localPosition.y <= -9f && !HeroSc.bHeroDie)
+        if (transform.localPosition.y <= -9f && !SGameMng.I.bHeroDie)
         {
             transform.localPosition = new Vector2(0f, 8f);
         }
