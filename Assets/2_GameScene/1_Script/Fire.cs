@@ -5,14 +5,9 @@ using UnityEngine;
 public class Fire : MonoBehaviour
 {
 
-    //public Player HeroSc;
     public MapScroll MapSc;
 
-    // Use this for initialization
-    void Start()
-    {
 
-    }
 
     // Update is called once per frame
     void Update()
