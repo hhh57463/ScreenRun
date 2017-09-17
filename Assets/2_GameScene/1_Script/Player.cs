@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
 
     public int nTimeCount = 0;
     public int nLevel = 1;
+    public int nAbilityCount = 0;
 
     // Use this for initialization
     void Start()
@@ -107,6 +108,32 @@ public class Player : MonoBehaviour
 
         }
 
+    }
+
+    void RandomAbility()
+    {
+        switch(nAbilityCount)
+        {
+            case 1:
+
+                break;
+
+            case 2:
+
+                break;
+
+            case 3:
+
+                break;
+
+            case 4:
+
+                break;
+
+            case 5:
+
+                break;
+        }
     }
 
     IEnumerator Difficulty()
