@@ -144,26 +144,28 @@ public class Player : MonoBehaviour
     {
         int nRand = Random.Range(0, 4);
         ShiledGams.SetActive(true);
+
+        Debug.Log(nRand);
         switch (nRand)
         {
             case 0:
                 ShiledGams.transform.localPosition = new Vector3(0f, 0.5f, 0f);
-                ShiledGams.transform.Rotate(Vector3.zero);
+                ShiledGams.transform.localRotation = Quaternion.Euler(Vector3.zero);
                 break;
 
             case 1:
                 ShiledGams.transform.localPosition = new Vector3(0f, -0.5f, 0f);
-                ShiledGams.transform.Rotate(Vector3.zero);
+                ShiledGams.transform.localRotation = Quaternion.Euler(Vector3.zero);
                 break;
 
             case 2:
                 ShiledGams.transform.localPosition = new Vector3(-0.5f, 0f, 0f);
-                ShiledGams.transform.Rotate(new Vector3(0f, 0f, 90f));
+                ShiledGams.transform.localRotation = Quaternion.Euler(new Vector3(0f, 0f, 90f));
                 break;
 
             case 3:
                 ShiledGams.transform.localPosition = new Vector3(0.5f, 0f, 0f);
-                ShiledGams.transform.Rotate(new Vector3(0f, 0f, 90f));
+                ShiledGams.transform.localRotation = Quaternion.Euler(new Vector3(0f, 0f, 90f));
                 break;
         }
 
