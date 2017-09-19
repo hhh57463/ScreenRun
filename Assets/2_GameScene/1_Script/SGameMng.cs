@@ -56,7 +56,6 @@ public class SGameMng : MonoBehaviour
             StartCoroutine(ItemZen());
             bItemZenStart = false;
         }
-        Debug.Log(bHeroDie);
     }
 
     public IEnumerator ItemZen()

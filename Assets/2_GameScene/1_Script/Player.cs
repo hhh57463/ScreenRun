@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     public GameObject ResultSceneGams;
     public GameObject[] GameUIs;
     public GameObject LevelUpAniGams;
+    public GameObject ShiledGams;
+
 
     public Transform HeroParentTr;
 
@@ -59,6 +61,12 @@ public class Player : MonoBehaviour
             bDifficulty = false;
             StartCoroutine(Difficulty());
         }
+        /////////////////////////////////////////////////////////
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Shiled();
+        }
+        //////////////////////////////////////////////////////////
     }
 
     public void Move()
@@ -110,12 +118,12 @@ public class Player : MonoBehaviour
 
     }
 
-    void RandomAbility()
+    public void RandomAbility()
     {
-        switch(nAbilityCount)
+        switch (nAbilityCount)
         {
             case 1:
-
+                Shiled();
                 break;
 
             case 2:
@@ -129,11 +137,36 @@ public class Player : MonoBehaviour
             case 4:
 
                 break;
+        }
+    }
 
-            case 5:
+    void Shiled()
+    {
+        int nRand = Random.Range(0, 4);
+        ShiledGams.SetActive(true);
+        switch (nRand)
+        {
+            case 0:
+                ShiledGams.transform.localPosition = new Vector3(0f, 0.5f, 0f);
+                ShiledGams.transform.Rotate(Vector3.zero);
+                break;
 
+            case 1:
+                ShiledGams.transform.localPosition = new Vector3(0f, -0.5f, 0f);
+                ShiledGams.transform.Rotate(Vector3.zero);
+                break;
+
+            case 2:
+                ShiledGams.transform.localPosition = new Vector3(-0.5f, 0f, 0f);
+                ShiledGams.transform.Rotate(new Vector3(0f, 0f, 90f));
+                break;
+
+            case 3:
+                ShiledGams.transform.localPosition = new Vector3(0.5f, 0f, 0f);
+                ShiledGams.transform.Rotate(new Vector3(0f, 0f, 90f));
                 break;
         }
+
     }
 
     IEnumerator Difficulty()
