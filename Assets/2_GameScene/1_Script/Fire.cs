@@ -4,17 +4,12 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
-
     public MapScroll MapSc;
-
-
 
     // Update is called once per frame
     void Update()
     {
-
         Move();
-
     }
 
     public void Move()
@@ -62,7 +57,6 @@ public class Fire : MonoBehaviour
                 transform.Translate(Vector2.right * SGameMng.I.fFireSpeed * Time.deltaTime);
                 transform.Translate(Vector2.down * SGameMng.I.fFireSpeed * Time.deltaTime);
                 break;
-
         }
     }
 

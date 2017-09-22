@@ -60,12 +60,10 @@ public class SGameMng : MonoBehaviour
 
     public IEnumerator ItemZen()
     {
-
         ItemPosRandomSetting();
         yield return new WaitForSeconds(fIteZenTime);
         ItemAni.SetActive(true);
         Instantiate(ItemPre, ItemPosVec, Quaternion.identity, ItemZenPr);
-
     }
 
     void ItemPosRandomSetting()

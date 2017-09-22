@@ -87,7 +87,6 @@ public class Item : MonoBehaviour
     {
         if (col.CompareTag("Hero"))
         {
-            //StartCoroutine(SGameMng.I.ItemZen());
             Debug.Log("아이템 획득!");
             SGameMng.I.bItemZenStart = true;
             HeroSc.nAbilityCount = Random.Range(1, 5);
