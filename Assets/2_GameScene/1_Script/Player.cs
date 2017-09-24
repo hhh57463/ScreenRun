@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public GameObject[] GameUIs;
     public GameObject LevelUpAniGams;
     public GameObject ShiledGams;
+    public GameObject AngelGams;
 
 
     public Transform HeroParentTr;
@@ -127,7 +128,7 @@ public class Player : MonoBehaviour
                 break;
 
             case 2:
-
+                Angel();
                 break;
 
             case 3:
@@ -169,6 +170,18 @@ public class Player : MonoBehaviour
                 break;
         }
 
+    }
+
+    void Angel()
+    {
+        AngelGams.SetActive(true);
+        StartCoroutine(AngelDel());
+    }
+
+    IEnumerator AngelDel()
+    {
+        yield return new WaitForSeconds(5f);
+        AngelGams.SetActive(false);
     }
 
     IEnumerator Difficulty()
