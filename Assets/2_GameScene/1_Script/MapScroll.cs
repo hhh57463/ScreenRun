@@ -64,10 +64,10 @@ public class MapScroll : MonoBehaviour
 
     }
 
-    IEnumerator MapScrollNumSet()                                                                   //5초마다 맵 스크롤 방향 바뀜
+    IEnumerator MapScrollNumSet()                                                                   //10초마다 맵 스크롤 방향 바뀜
     {
         nMapNum = Random.Range(0, 8);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(10f);
         StartCoroutine(MapScrollNumSet());
     }
 
