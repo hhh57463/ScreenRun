@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class JoyStick : MonoBehaviour {
 
+    public Transform StickTrans = null;
     public Image StickImg = null;
     public Vector3 OldVec;
     float fStickRadius = 0f;
     public Vector3 DirVec;
-    public Transform StickTrans = null;
     public bool bUse = false;
     public float PlayerAngle;
 

@@ -5,23 +5,29 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
-    public GameObject ResultSceneGams;
-    public GameObject[] GameUIs;
-    public GameObject LevelUpAniGams;
-    public GameObject ShiledGams;
-    public GameObject AngelGams;
+    public GameObject ResultSceneGams = null;
+    public GameObject[] GameUIs = null;
+    public GameObject LevelUpAniGams = null;
+    public GameObject ShiledGams = null;
+    public GameObject AngelGams = null;
+    [SerializeField]
+    GameObject[] PlayerTransBubble = null;
 
+    public Transform HeroParentTr = null;
 
-    public Transform HeroParentTr;
+    public JoyStick JoyStickSc = null;
 
-    public JoyStick JoyStickSc;
+    public MapScroll MapSc = null;
 
-    public MapScroll MapSc;
+    SpriteRenderer HeroSr = null;
 
     //public bool bHeroDie = false;
     public bool bDifficulty = false;
+    [SerializeField]
+    bool bMapOut = false;
+    [SerializeField]
+    bool[] bOutPos;
 
-    SpriteRenderer HeroSr;
 
     public int nTimeCount = 0;
     public int nLevel = 1;
@@ -62,12 +68,22 @@ public class Player : MonoBehaviour
             bDifficulty = false;
             StartCoroutine(Difficulty());
         }
+        PlayerBubble();
         /////////////////////////////////////////////////////////
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Shiled();
         }
         //////////////////////////////////////////////////////////
+        //if (bMapOut)
+        //{
+        //    if (transform.localPosition.x <= 8.9 && transform.localPosition.x >= -8.9 && transform.localPosition.y <= 5.2 && transform.localPosition.y >= -5.2)
+        //    {
+        //        Debug.Log("맵안");
+        //        for (int i = 0; i < PlayerTransBubble.Length; i++)
+        //            PlayerTransBubble[i].SetActive(false);
+        //    }
+        //}
     }
 
     public void Move()
@@ -117,6 +133,26 @@ public class Player : MonoBehaviour
 
         }
 
+    }
+
+    void PlayerBubble()
+    {
+        if (bOutPos[0])
+        {
+            PlayerTransBubble[0].transform.localPosition = new Vector3(HeroParentTr.localPosition.x, 4.15f, 0f);
+        }
+        else if (bOutPos[1])
+        {
+            PlayerTransBubble[1].transform.localPosition = new Vector3(HeroParentTr.localPosition.x, -4.15f, 0f);
+        }
+        else if (bOutPos[2])
+        {
+            PlayerTransBubble[2].transform.localPosition = new Vector3(8.15f, HeroParentTr.localPosition.y, 0f);
+        }
+        else if (bOutPos[3])
+        {
+            PlayerTransBubble[3].transform.localPosition = new Vector3(-8.15f, HeroParentTr.localPosition.y, 0f);
+        }
     }
 
     public void RandomAbility()
@@ -194,9 +230,8 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         for (int i = 0; i < GameUIs.Length; i++)
-        {
             GameUIs[i].SetActive(false);
-        }
+
         SGameMng.I.AniGams.SetActive(false);
         SGameMng.I.GameObjects.SetActive(false);
         ResultSceneGams.SetActive(true);
@@ -214,11 +249,53 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.CompareTag("Wall") || col.CompareTag("Fire") || col.CompareTag("Hand"))
+        if (/*col.CompareTag("Wall") || */col.CompareTag("Fire") || col.CompareTag("Hand"))
         {
             SGameMng.I.bHeroDie = true;
             HeroSr.enabled = false;
             Debug.Log("게임오버");
+        }
+
+        if (col.name == "UpWall")
+        {
+            bMapOut = true;
+            bOutPos[0] = true;
+            PlayerTransBubble[0].SetActive(true);
+            Debug.Log("UP");
+        }
+        else if (col.name == "DownWall")
+        {
+            bMapOut = true;
+            bOutPos[1] = true;
+            PlayerTransBubble[1].SetActive(true);
+            Debug.Log("Down");
+        }
+        else if (col.name == "RightWall")
+        {
+            bMapOut = true;
+            bOutPos[2] = true;
+            PlayerTransBubble[2].SetActive(true);
+            Debug.Log("Right");
+        }
+        else if (col.name == "LeftWall")
+        {
+            bMapOut = true;
+            bOutPos[3] = true;
+            PlayerTransBubble[3].SetActive(true);
+            Debug.Log("Left");
+        }
+
+        if (bMapOut)
+        {
+            if (col.CompareTag("Map"))
+            {
+                Debug.Log("맵안");
+                for (int i = 0; i < PlayerTransBubble.Length; i++)
+                {
+                    PlayerTransBubble[i].SetActive(false);
+                    bOutPos[i] = false;
+                }
+            }
         }
     }
 

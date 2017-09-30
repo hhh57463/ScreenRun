@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
-    public MapScroll MapSc;
+    public MapScroll MapSc = null;
 
     // Update is called once per frame
     void Update()

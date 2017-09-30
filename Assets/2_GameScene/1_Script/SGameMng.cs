@@ -7,12 +7,12 @@ public class SGameMng : MonoBehaviour
 
     private static SGameMng _Instance = null;
 
-    public GameObject ItemPre;
-    public GameObject ItemAni;
-    public GameObject GameObjects;
-    public GameObject AniGams;
+    public GameObject ItemPre = null;
+    public GameObject ItemAni = null;
+    public GameObject GameObjects = null;
+    public GameObject AniGams = null;
 
-    public Transform ItemZenPr;
+    public Transform ItemZenPr = null;
 
     public Vector3 ItemPosVec;
 
@@ -68,8 +68,8 @@ public class SGameMng : MonoBehaviour
 
     void ItemPosRandomSetting()
     {
-        fZenPos[0] = Random.Range(-6f, 6f);
-        fZenPos[1] = Random.Range(-4f, 4f);
+        fZenPos[0] = Random.Range(-2f, 2f);
+        fZenPos[1] = Random.Range(-1.5f, 1.5f);
         ItemPosVec = new Vector3(fZenPos[0], fZenPos[1], 0f);
     }
 

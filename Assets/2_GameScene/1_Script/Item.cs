@@ -5,8 +5,8 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
 
-    public Player HeroSc;
-    public MapScroll MapSc;
+    public Player HeroSc = null;
+    public MapScroll MapSc = null;
 
     // Use this for initialization
     void Start()

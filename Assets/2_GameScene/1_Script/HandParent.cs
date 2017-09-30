@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class HandParent : MonoBehaviour {
 
-    public GameObject HeroGams;
-    public GameObject HandPre;
+    public GameObject HeroGams = null;
+    public GameObject HandPre = null;
     //public Player HeroSc;
     public bool bSkillUse = false;
     Vector3 PosVec3;
