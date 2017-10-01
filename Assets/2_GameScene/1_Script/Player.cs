@@ -32,6 +32,8 @@ public class Player : MonoBehaviour
     public int nTimeCount = 0;
     public int nLevel = 1;
     public int nAbilityCount = 0;
+    [SerializeField]
+    int nMapOutCount = 0;
 
     // Use this for initialization
     void Start()
@@ -75,15 +77,10 @@ public class Player : MonoBehaviour
             Shiled();
         }
         //////////////////////////////////////////////////////////
-        //if (bMapOut)
-        //{
-        //    if (transform.localPosition.x <= 8.9 && transform.localPosition.x >= -8.9 && transform.localPosition.y <= 5.2 && transform.localPosition.y >= -5.2)
-        //    {
-        //        Debug.Log("맵안");
-        //        for (int i = 0; i < PlayerTransBubble.Length; i++)
-        //            PlayerTransBubble[i].SetActive(false);
-        //    }
-        //}
+        if (nMapOutCount == 5)
+        {
+            SGameMng.I.bHeroDie = true;
+        }
     }
 
     public void Move()
@@ -247,6 +244,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    IEnumerator MapOutCount()
+    {
+        yield return new WaitForSeconds(1f);
+        if (bMapOut)
+        {
+            StartCoroutine(MapOutCount());
+            nMapOutCount++;
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D col)
     {
         if (/*col.CompareTag("Wall") || */col.CompareTag("Fire") || col.CompareTag("Hand"))
@@ -258,43 +265,57 @@ public class Player : MonoBehaviour
 
         if (col.name == "UpWall")
         {
-            bMapOut = true;
             bOutPos[0] = true;
             PlayerTransBubble[0].SetActive(true);
-            Debug.Log("UP");
+            if (!bMapOut)
+            {
+                bMapOut = true;
+                StartCoroutine(MapOutCount());
+            }
         }
         else if (col.name == "DownWall")
         {
-            bMapOut = true;
             bOutPos[1] = true;
             PlayerTransBubble[1].SetActive(true);
-            Debug.Log("Down");
+            if (!bMapOut)
+            {
+                bMapOut = true;
+                StartCoroutine(MapOutCount());
+            }
         }
         else if (col.name == "RightWall")
-        {
-            bMapOut = true;
+        { 
             bOutPos[2] = true;
             PlayerTransBubble[2].SetActive(true);
-            Debug.Log("Right");
+            if (!bMapOut)
+            {
+                bMapOut = true;
+                StartCoroutine(MapOutCount());
+            }
         }
         else if (col.name == "LeftWall")
         {
-            bMapOut = true;
             bOutPos[3] = true;
             PlayerTransBubble[3].SetActive(true);
-            Debug.Log("Left");
+            if (!bMapOut)
+            {
+                bMapOut = true;
+                StartCoroutine(MapOutCount());
+            }
         }
 
         if (bMapOut)
         {
             if (col.CompareTag("Map"))
             {
-                Debug.Log("맵안");
+                bMapOut = false;
                 for (int i = 0; i < PlayerTransBubble.Length; i++)
                 {
                     PlayerTransBubble[i].SetActive(false);
                     bOutPos[i] = false;
                 }
+                StopCoroutine("MapOutCount");
+                nMapOutCount = 0;
             }
         }
     }
