@@ -136,19 +136,23 @@ public class Player : MonoBehaviour
     {
         if (bOutPos[0])
         {
-            PlayerTransBubble[0].transform.localPosition = new Vector3(HeroParentTr.localPosition.x, 4.15f, 0f);
+            if (PlayerTransBubble[0].transform.localPosition.x <= 8f && PlayerTransBubble[0].transform.localPosition.x >= -8f)
+                PlayerTransBubble[0].transform.localPosition = new Vector3(HeroParentTr.localPosition.x, 4.15f, 0f);
         }
         else if (bOutPos[1])
         {
-            PlayerTransBubble[1].transform.localPosition = new Vector3(HeroParentTr.localPosition.x, -4.15f, 0f);
+            if (PlayerTransBubble[1].transform.localPosition.x <= 8f && PlayerTransBubble[1].transform.localPosition.x >= -8f)
+                PlayerTransBubble[1].transform.localPosition = new Vector3(HeroParentTr.localPosition.x, -4.15f, 0f);
         }
         else if (bOutPos[2])
         {
-            PlayerTransBubble[2].transform.localPosition = new Vector3(8.15f, HeroParentTr.localPosition.y, 0f);
+            if (PlayerTransBubble[2].transform.localPosition.y <= 4f && PlayerTransBubble[2].transform.localPosition.y >= -4f)
+                PlayerTransBubble[2].transform.localPosition = new Vector3(8.15f, HeroParentTr.localPosition.y, 0f);
         }
         else if (bOutPos[3])
         {
-            PlayerTransBubble[3].transform.localPosition = new Vector3(-8.15f, HeroParentTr.localPosition.y, 0f);
+            if (PlayerTransBubble[3].transform.localPosition.y <= 4f && PlayerTransBubble[3].transform.localPosition.y >= -4f)
+                PlayerTransBubble[3].transform.localPosition = new Vector3(-8.15f, HeroParentTr.localPosition.y, 0f);
         }
     }
 
@@ -284,7 +288,7 @@ public class Player : MonoBehaviour
             }
         }
         else if (col.name == "RightWall")
-        { 
+        {
             bOutPos[2] = true;
             PlayerTransBubble[2].SetActive(true);
             if (!bMapOut)
@@ -312,6 +316,7 @@ public class Player : MonoBehaviour
                 for (int i = 0; i < PlayerTransBubble.Length; i++)
                 {
                     PlayerTransBubble[i].SetActive(false);
+                    PlayerTransBubble[i].transform.localPosition = Vector3.zero;
                     bOutPos[i] = false;
                 }
                 StopCoroutine("MapOutCount");
