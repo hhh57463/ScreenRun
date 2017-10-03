@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
     bool bMapOut = false;
     [SerializeField]
     bool[] bOutPos;
+    [SerializeField]
+    bool bAngelSkill = false;
 
 
     public int nTimeCount = 0;
@@ -71,15 +73,21 @@ public class Player : MonoBehaviour
             StartCoroutine(Difficulty());
         }
         PlayerBubble();
-        /////////////////////////////////////////////////////////
+        /////////////////////////////스킬 호출 구간 지울 것!////////////////////////////
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Shiled();
+            //Shiled();
+            Angel();
         }
-        //////////////////////////////////////////////////////////
-        if (nMapOutCount == 5)
+        //////////////////////////////////////////////////////////////////////////////
+        if (nMapOutCount == 5)                                                             //맵밖에서 5초동안 있을시 사망
         {
             SGameMng.I.bHeroDie = true;
+        }
+        if (bAngelSkill && Time.time > SGameMng.I.fAngelDmgAccessCount + 2f)              //천사스킬 발동 후 3초간 무적
+        {
+            bAngelSkill = false;
+            SGameMng.I.fAngelDmgAccessCount = 0f;
         }
     }
 
@@ -211,6 +219,27 @@ public class Player : MonoBehaviour
 
     void Angel()
     {
+        int nAngelRand = Random.Range(0, 4);
+        switch(nAngelRand)
+        {
+            case 0:
+                SGameMng.I.bHeroDmgAccess = true;
+                SGameMng.I.fAngelDmgAccessCount = Time.time;
+                break;
+
+            case 1:
+
+                break;
+
+            case 2:
+
+                break;
+
+            case 3:
+
+                break;
+        }
+        bAngelSkill = true;
         AngelGams.SetActive(true);
         StartCoroutine(AngelDel());
     }
@@ -260,11 +289,14 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (/*col.CompareTag("Wall") || */col.CompareTag("Fire") || col.CompareTag("Hand"))
+        if (!SGameMng.I.bHeroDmgAccess)
         {
-            SGameMng.I.bHeroDie = true;
-            HeroSr.enabled = false;
-            Debug.Log("게임오버");
+            if (/*col.CompareTag("Wall") || */col.CompareTag("Fire") || col.CompareTag("Hand"))
+            {
+                SGameMng.I.bHeroDie = true;
+                HeroSr.enabled = false;
+                Debug.Log("게임오버");
+            }
         }
 
         if (col.name == "UpWall")

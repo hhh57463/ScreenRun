@@ -17,6 +17,7 @@ public class SGameMng : MonoBehaviour
     public Vector3 ItemPosVec;
 
     public bool bHeroDie = false;
+    public bool bHeroDmgAccess = false;
     public bool bItemZenStart = false;
 
     public float fFireDownSpeed = 2f;
@@ -24,10 +25,11 @@ public class SGameMng : MonoBehaviour
     public float fMapScrollSpeed = 0.5f;
     public float fHandSpeed = 10.0f;
     public float fItemSpeed = 2f;
-    public float fHeroCompulsionMoveSpeed = 0.5f;
+    public float fHeroCompulsionMoveSpeed = 0.5f;                   //플레이어 강제 속도
     public float fHeroSpeed = 4f;
     public float fDifficultyUpTime = 10f;
     public float fIteZenTime = 10f;
+    public float fAngelDmgAccessCount = 0f;
     public float[] fZenPos;
 
 
