@@ -5,10 +5,10 @@ using UnityEngine;
 public class HandMonster : MonoBehaviour {
 
     //public GameObject HandParentGams;
-    public HandParent HandParentSc;
-    public SpriteRenderer HandSr;
-    public Sprite HandSprite;
-    BoxCollider2D Box;
+    public HandParent HandParentSc = null;
+    public SpriteRenderer HandSr = null;
+    public Sprite HandSprite = null;
+    BoxCollider2D Box = null;
 
 	// Use this for initialization
 	void Start () {

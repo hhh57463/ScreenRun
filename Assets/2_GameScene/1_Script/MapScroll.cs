@@ -7,8 +7,8 @@ public class MapScroll : MonoBehaviour
 {
     Material MapMat;
     public int nMapNum;
-    public Image DirectionImg;                  //UI중 방향이미지
-    public Sprite[] DirectionSpt;                 //방향이미지들
+    public Image DirectionImg = null;                 //UI중 방향이미지
+    public Sprite[] DirectionSpt = null;                 //방향이미지들
 
 
     // Use this for initialization

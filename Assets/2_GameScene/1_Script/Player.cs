@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     public GameObject AngelGams = null;
     [SerializeField]
     GameObject[] PlayerTransBubble = null;
+    [SerializeField]
+    GameObject MapOutCountGams = null;
 
     public Transform HeroParentTr = null;
 
@@ -34,8 +36,7 @@ public class Player : MonoBehaviour
     public int nTimeCount = 0;
     public int nLevel = 1;
     public int nAbilityCount = 0;
-    [SerializeField]
-    int nMapOutCount = 0;
+    public int nMapOutCount = 5;
 
     // Use this for initialization
     void Start()
@@ -80,7 +81,7 @@ public class Player : MonoBehaviour
             Angel();
         }
         //////////////////////////////////////////////////////////////////////////////
-        if (nMapOutCount == 5)                                                             //맵밖에서 5초동안 있을시 사망
+        if (nMapOutCount == 0)                                                             //맵밖에서 5초동안 있을시 사망
         {
             SGameMng.I.bHeroDie = true;
         }
@@ -191,7 +192,6 @@ public class Player : MonoBehaviour
         int nRand = Random.Range(0, 4);
         ShiledGams.SetActive(true);
 
-        Debug.Log(nRand);
         switch (nRand)
         {
             case 0:
@@ -220,7 +220,7 @@ public class Player : MonoBehaviour
     void Angel()
     {
         int nAngelRand = Random.Range(0, 4);
-        switch(nAngelRand)
+        switch (nAngelRand)
         {
             case 0:
                 SGameMng.I.bHeroDmgAccess = true;
@@ -262,6 +262,7 @@ public class Player : MonoBehaviour
         for (int i = 0; i < GameUIs.Length; i++)
             GameUIs[i].SetActive(false);
 
+        MapOutCountGams.SetActive(false);
         SGameMng.I.AniGams.SetActive(false);
         SGameMng.I.GameObjects.SetActive(false);
         ResultSceneGams.SetActive(true);
@@ -283,7 +284,8 @@ public class Player : MonoBehaviour
         if (bMapOut)
         {
             StartCoroutine(MapOutCount());
-            nMapOutCount++;
+            if (nMapOutCount > 0)
+                nMapOutCount--;
         }
     }
 
@@ -307,6 +309,7 @@ public class Player : MonoBehaviour
             {
                 bMapOut = true;
                 StartCoroutine(MapOutCount());
+                MapOutCountGams.SetActive(true);
             }
         }
         else if (col.name == "DownWall")
@@ -317,6 +320,7 @@ public class Player : MonoBehaviour
             {
                 bMapOut = true;
                 StartCoroutine(MapOutCount());
+                MapOutCountGams.SetActive(true);
             }
         }
         else if (col.name == "RightWall")
@@ -327,6 +331,7 @@ public class Player : MonoBehaviour
             {
                 bMapOut = true;
                 StartCoroutine(MapOutCount());
+                MapOutCountGams.SetActive(true);
             }
         }
         else if (col.name == "LeftWall")
@@ -337,6 +342,7 @@ public class Player : MonoBehaviour
             {
                 bMapOut = true;
                 StartCoroutine(MapOutCount());
+                MapOutCountGams.SetActive(true);
             }
         }
 
@@ -352,7 +358,8 @@ public class Player : MonoBehaviour
                     bOutPos[i] = false;
                 }
                 StopCoroutine("MapOutCount");
-                nMapOutCount = 0;
+                nMapOutCount = 5;
+                MapOutCountGams.SetActive(false);
             }
         }
     }
