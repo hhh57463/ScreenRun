@@ -91,6 +91,7 @@ public class Player : MonoBehaviour
         {
             bAngelSkill = false;
             SGameMng.I.fAngelDmgAccessCount = 0f;
+            SGameMng.I.bHeroDmgAccess = false;
         }
     }
 
