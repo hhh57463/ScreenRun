@@ -14,6 +14,7 @@ public class GameLabelMng : MonoBehaviour
     public Text ResultLevelText = null;
     public Text ResultBestLevelText = null;
     public Text MapOutCountText = null;
+    public Text AngelLabelCountText = null;
 
     // Use this for initialization
     void Start()
@@ -28,6 +29,7 @@ public class GameLabelMng : MonoBehaviour
         ResultTimeCount.text = HeroSc.nTimeCount.ToString() + " 초";
         LevelText.text = HeroSc.nLevel.ToString();
         ResultLevelText.text = HeroSc.nLevel.ToString();
+        AngelLabelCountText.text = "천사의 가호로" + SGameMng.I.fAngelDmgAccessCount.ToString("N0") + "초간 무적";
         if (HeroSc.nMapOutCount > 0)
             MapOutCountText.text = "사망" + HeroSc.nMapOutCount.ToString() + "초전";
         else

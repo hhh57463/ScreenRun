@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public GameObject LevelUpAniGams = null;
     public GameObject ShiledGams = null;
     public GameObject AngelGams = null;
+    public GameObject AngelLabelGams = null;
     [SerializeField]
     GameObject[] PlayerTransBubble = null;
     [SerializeField]
@@ -92,6 +93,7 @@ public class Player : MonoBehaviour
             bAngelSkill = false;
             SGameMng.I.fAngelDmgAccessCount = 0f;
             SGameMng.I.bHeroDmgAccess = false;
+            AngelLabelGams.SetActive(false);
         }
     }
 
@@ -228,6 +230,7 @@ public class Player : MonoBehaviour
             case 0:
                 SGameMng.I.bHeroDmgAccess = true;
                 SGameMng.I.fAngelDmgAccessCount = Time.time;
+                AngelLabelGams.SetActive(true);
                 break;
 
             case 1:
